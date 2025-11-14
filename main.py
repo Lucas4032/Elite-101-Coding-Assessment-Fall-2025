@@ -1,17 +1,32 @@
+# Fall 2025 Coding Assesment Created by: Lucas Mowers
+
+
 from library_books import library_books
 from datetime import datetime, timedelta
 
 # -------- Level 1 --------
 # TODO: Create a function to view all books that are currently available
 # Output should include book ID, title, and author
-
-
+def viewavailablebooks(books):
+    #This prints all books that are available
+    print("Available Books:")
+    for book in books:
+        if book["available"]:
+            print(f"{book["id"]}, {book["title"]}, by {book["author"]")
+    print()
 # -------- Level 2 --------
 # TODO: Create a function to search books by author OR genre
 # Search should be case-insensitive
 # Return a list of matching books
+def search_books(books, term):
+    #This will return the books where the author or genre would match the term
+    term = term.lower()
+    results = []
 
-
+    for book in books:
+        if term in book["author"].lower() or term in book["genre"].lower():
+            results.append(book)
+    return results
 # -------- Level 3 --------
 # TODO: Create a function to checkout a book by ID
 # If the book is available:
@@ -21,7 +36,21 @@ from datetime import datetime, timedelta
 # If it is not available:
 #   - Print a message saying it's already checked out
 
+def checkout_book(books, book_id):
+    #checks the book out if its available
 
+    for book in books:
+        if book["id"] == book_id:
+            if not book["available"]
+            print("That book is already checked out.")
+            return
+        book["available"] = False
+        book["due_date"] = (datetime.now() + timedelta(days=14)).strftime("%m/%d/%Y")
+        book ["checkouts"] += 1
+
+        print(f"You have checked out '{book["title"]}'. Due: {book["due_date"]}")
+        return
+    print("Book ID not found.)
 # -------- Level 4 --------
 # TODO: Create a function to return a book by ID
 # Set its availability to True and clear the due_date
